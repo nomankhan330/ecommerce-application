@@ -8,23 +8,13 @@ use App\Http\Controllers\BaseController;
 
 class CategoryController extends BaseController
 {
-    /**
-     * @var CategoryContract
-     */
     protected $categoryRepository;
 
-    /**
-     * CategoryController constructor.
-     * @param CategoryContract $categoryRepository
-     */
     public function __construct(CategoryContract $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function index()
     {
         $categories = $this->categoryRepository->listCategories();
@@ -33,9 +23,6 @@ class CategoryController extends BaseController
         return view('admin.categories.index', compact('categories'));
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function create()
     {
         $categories = $this->categoryRepository->treeList();
@@ -44,11 +31,6 @@ class CategoryController extends BaseController
         return view('admin.categories.create', compact('categories'));
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -67,10 +49,6 @@ class CategoryController extends BaseController
         return $this->responseRedirect('admin.categories.index', 'Category added successfully' ,'success',false, false);
     }
 
-    /**
-     * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function edit($id)
     {
         $targetCategory = $this->categoryRepository->findCategoryById($id);
@@ -80,11 +58,6 @@ class CategoryController extends BaseController
         return view('admin.categories.edit', compact('categories', 'targetCategory'));
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function update(Request $request)
     {
         $this->validate($request, [
@@ -103,10 +76,6 @@ class CategoryController extends BaseController
         return $this->responseRedirectBack('Category updated successfully' ,'success',false, false);
     }
 
-    /**
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function delete($id)
     {
         $category = $this->categoryRepository->deleteCategory($id);

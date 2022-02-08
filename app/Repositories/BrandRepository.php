@@ -19,32 +19,17 @@ class BrandRepository extends BaseRepository implements BrandContract
 {
     use UploadAble;
 
-    /**
-     * CategoryRepository constructor.
-     * @param Brand $model
-     */
     public function __construct(Brand $model)
     {
         parent::__construct($model);
         $this->model = $model;
     }
 
-    /**
-     * @param string $order
-     * @param string $sort
-     * @param array $columns
-     * @return mixed
-     */
     public function listBrands(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
     {
         return $this->all($columns, $order, $sort);
     }
 
-    /**
-     * @param int $id
-     * @return mixed
-     * @throws ModelNotFoundException
-     */
     public function findBrandById(int $id)
     {
         try {
@@ -57,10 +42,6 @@ class BrandRepository extends BaseRepository implements BrandContract
 
     }
 
-    /**
-     * @param array $params
-     * @return Brand|mixed
-     */
     public function createBrand(array $params)
     {
         try {
@@ -85,10 +66,6 @@ class BrandRepository extends BaseRepository implements BrandContract
         }
     }
 
-    /**
-     * @param array $params
-     * @return mixed
-     */
     public function updateBrand(array $params)
     {
         //dd($params);
@@ -114,10 +91,6 @@ class BrandRepository extends BaseRepository implements BrandContract
         return $brand;
     }
 
-    /**
-     * @param $id
-     * @return bool|mixed
-     */
     public function deleteBrand($id)
     {
         $brand = $this->findBrandById($id);

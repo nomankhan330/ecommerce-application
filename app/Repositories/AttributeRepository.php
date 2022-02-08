@@ -10,32 +10,17 @@ use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
 class AttributeRepository extends BaseRepository implements AttributeContract
 {
-    /**
-     * AttributeRepository constructor.
-     * @param Attribute $model
-     */
     public function __construct(Attribute $model)
     {
         parent::__construct($model);
         $this->model = $model;
     }
 
-    /**
-     * @param string $order
-     * @param string $sort
-     * @param array $columns
-     * @return mixed
-     */
     public function listAttributes(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
     {
         return $this->all($columns, $order, $sort);
     }
 
-    /**
-     * @param int $id
-     * @return mixed
-     * @throws ModelNotFoundException
-     */
     public function findAttributeById(int $id)
     {
         try {
@@ -48,10 +33,6 @@ class AttributeRepository extends BaseRepository implements AttributeContract
 
     }
 
-    /**
-     * @param array $params
-     * @return Category|mixed
-     */
     public function createAttribute(array $params)
     {
         try {
@@ -73,10 +54,6 @@ class AttributeRepository extends BaseRepository implements AttributeContract
         }
     }
 
-    /**
-     * @param array $params
-     * @return mixed
-     */
     public function updateAttribute(array $params)
     {
         $attribute = $this->findAttributeById($params['id']);
@@ -93,10 +70,6 @@ class AttributeRepository extends BaseRepository implements AttributeContract
         return $attribute;
     }
 
-    /**
-     * @param $id
-     * @return bool|mixed
-     */
     public function deleteAttribute($id)
     {
         $attribute = $this->findAttributeById($id);
