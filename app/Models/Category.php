@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+//use App\Models\Product;
+use TypiCMS\NestableTrait;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    use NestableTrait;
+
     protected $table = 'categories';
 
     protected $fillable = [
@@ -17,6 +22,15 @@ class Category extends Model
         'featured'  =>  'boolean',
         'menu'      =>  'boolean'
     ];
+
+    /**
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
 
     public function parent()
     {

@@ -95,7 +95,7 @@ class CategoryRepository extends BaseRepository implements CategoryContract
     public function updateCategory(array $params)
     {
         $category = $this->findCategoryById($params['id']);
-
+        $image = $category->image;
         $collection = collect($params)->except('_token');
 
         if ($collection->has('image') && ($params['image'] instanceof  UploadedFile)) {

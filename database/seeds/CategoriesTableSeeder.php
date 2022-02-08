@@ -13,12 +13,12 @@ class CategoriesTableSeeder extends Seeder
     {
         Category::create([
             'name'          =>  'Root',
-            'slug'          => '-',
+            'slug'          => '',
             'description'   =>  'This is the root category, don\'t delete this one',
             'parent_id'     =>  null,
             'menu'          =>  0,
         ]);
 
-        factory('App\Models\Category', 10)->create();
+        factory('App\Models\Category', 1)->create();
     }
 }

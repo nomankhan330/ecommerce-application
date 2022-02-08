@@ -7,17 +7,39 @@
         </div>
     </div>
     <ul class="app-menu">
+
         <li>
-            <a class="app-menu__item active" href="#"><i class="app-menu__icon fa fa-dashboard"></i>
+            <a class="app-menu__item active" href="{{ route('admin.dashboard') }}"><i class="app-menu__icon fa fa-dashboard"></i>
                 <span class="app-menu__label">Dashboard</span>
             </a>
         </li>
-        <li>
+
+        {{--<li>
             <a class="app-menu__item {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}">
                 <i class="app-menu__icon fa fa-briefcase"></i>
                 <span class="app-menu__label">Brands</span>
             </a>
+        </li>--}}
+
+
+        <li class="treeview">
+            <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-users"></i>
+                <span class="app-menu__label">Catalog</span>
+                <i class="treeview-indicator fa fa-angle-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li>
+                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.brands.index' ? 'active' : '' }}" href="{{ route('admin.brands.index') }}"><i class="icon fa fa-circle-o"></i> Brands</a>
+                </li>
+                <li>
+                    <a class="treeview-item {{ Route::currentRouteName() == 'admin.categories.index' ? 'active' : '' }}" href="{{ route('admin.categories.index') }}"><i class="icon fa fa-circle-o"></i> Category</a>
+                </li>
+                <li>
+                    <a class="treeview-item" href="#"><i class="icon fa fa-circle-o"></i> Permissions</a>
+                </li>
+            </ul>
         </li>
+
         <li class="treeview">
             <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-users"></i>
                 <span class="app-menu__label">Users</span>
